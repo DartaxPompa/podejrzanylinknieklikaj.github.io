@@ -137,7 +137,7 @@ function next(){
     btn.innerHTML="🐹✨";
   }
   else if(step===3){
-    text.innerHTML="💗 Kocham Cię 💗<br>napisz „kocham cię"";
+    text.innerHTML="💗 Kocham Cię 💗<br>napisz „kocham cię”";
     btn.style.display="none";
     const input=document.createElement("input");
     input.placeholder="kocham cię";
@@ -146,7 +146,7 @@ function next(){
     input.style.padding="12px";
     document.body.appendChild(input);
     input.addEventListener("change",()=>{
-      if(input.value.toLowerCase().includes("kocham")){ 
+      if(input.value.toLowerCase().includes("kocham")){
         finale();
       }
     });
@@ -181,7 +181,7 @@ function spawnCats(){
     "https://media.giphy.com/media/13borq7Zo2kulO/giphy.gif",
     "https://media.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif"
   ];
-  for(let i=0;i<7;i++){ 
+  for(let i=0;i<7;i++){
     const c=document.createElement("img");
     c.src=gifs[i%gifs.length];
     c.className="catgif";
