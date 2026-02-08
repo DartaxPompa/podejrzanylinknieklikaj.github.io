@@ -17,8 +17,15 @@ body{
 }
 
 h1{
-  font-size:3rem;
+  font-size:3.2rem;
   animation:pulse 1.2s infinite alternate;
+}
+
+.big-love{
+  font-size:4.5rem;
+  color:#ff0066;
+  text-shadow:0 0 20px hotpink;
+  animation:heartbeat 1s infinite;
 }
 
 button{
@@ -43,44 +50,50 @@ button:hover{transform:scale(1.15)}
   from{transform:scale(1)}
   to{transform:scale(1.07)}
 }
+@keyframes heartbeat{
+  0%{transform:scale(1)}
+  25%{transform:scale(1.1)}
+  50%{transform:scale(1)}
+  75%{transform:scale(1.15)}
+  100%{transform:scale(1)}
+}
 
 /* Serduszka */
 .heart{
   position:fixed;
   top:-20px;
-  font-size:26px;
+  font-size:28px;
   animation:fall linear infinite;
 }
 @keyframes fall{
   to{transform:translateY(110vh);opacity:0}
 }
 
-/* GIF kotki */
+/* Cute cat GIFs */
 .catgif{
   position:fixed;
-  width:120px;
+  width:130px;
   bottom:0;
   animation:catBounce 2s infinite alternate;
 }
 @keyframes catBounce{
   from{transform:translateY(0)}
-  to{transform:translateY(-40px)}
+  to{transform:translateY(-45px)}
 }
 
 /* Sekretna scena */
 #kissScene{
   position:fixed;
   inset:0;
-  background:rgba(255,182,193,.95);
+  background:rgba(255,182,193,.96);
   display:none;
   flex-direction:column;
   align-items:center;
   justify-content:center;
   z-index:10;
 }
-
 #kissScene img{
-  width:280px;
+  width:300px;
   border-radius:30px;
   box-shadow:0 0 40px hotpink;
 }
@@ -92,7 +105,7 @@ button:hover{transform:scale(1.15)}
 <h1 id="text">(づ｡◕‿‿◕｡)づ Hej Hubert!</h1>
 <button id="btn" onclick="next()">hej 💕</button>
 
-<!-- OPENING ANIME -->
+<!-- ANIME OPENING -->
 <audio id="music" loop>
   <source src="https://files.catbox.moe/6w8b0y.mp3">
 </audio>
@@ -100,7 +113,7 @@ button:hover{transform:scale(1.15)}
 <!-- SEKRETNY BUZIAK -->
 <div id="kissScene">
   <h1>💋 BUZIAK DLA CIEBIE 💋</h1>
-  <img src="https://media.giphy.com/media/GMFUrC8E8aWoo/giphy.gif">
+  <img src="https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif">
   <p style="font-size:2rem">(≧◡≦) ♡</p>
 </div>
 
@@ -124,16 +137,16 @@ function next(){
     btn.innerHTML="🐹✨";
   }
   else if(step===3){
-    text.innerHTML="💗 Kocham Cię 💗<br>napisz „kocham cię”";
+    text.innerHTML="💗 Kocham Cię 💗<br>napisz „kocham cię"";
     btn.style.display="none";
     const input=document.createElement("input");
     input.placeholder="kocham cię";
-    input.style.fontSize="1.5rem";
+    input.style.fontSize="1.6rem";
     input.style.borderRadius="20px";
-    input.style.padding="10px";
+    input.style.padding="12px";
     document.body.appendChild(input);
     input.addEventListener("change",()=>{
-      if(input.value.toLowerCase().includes("kocham")){
+      if(input.value.toLowerCase().includes("kocham")){ 
         finale();
       }
     });
@@ -141,9 +154,12 @@ function next(){
 }
 
 function finale(){
-  document.body.innerHTML="";
+  document.body.innerHTML = `
+    <div class="big-love">KOCHAM CIĘ BUBI 💖</div>
+    <p style="font-size:2rem">(づ｡♥‿♥｡)づ</p>
+  `;
   spawnCats();
-  setTimeout(()=>document.getElementById("kissScene").style.display="flex",3000);
+  setTimeout(()=>document.getElementById("kissScene").style.display="flex",3500);
 }
 
 /* serduszka */
@@ -155,20 +171,21 @@ setInterval(()=>{
   h.style.animationDuration=3+Math.random()*3+"s";
   document.body.appendChild(h);
   setTimeout(()=>h.remove(),6000);
-},180);
+},170);
 
-/* prawdziwe GIF kotki */
+/* TYLKO SŁODKIE KOTKI */
 function spawnCats(){
   const gifs=[
     "https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif",
     "https://media.giphy.com/media/mlvseq9yvZhba/giphy.gif",
-    "https://media.giphy.com/media/13borq7Zo2kulO/giphy.gif"
+    "https://media.giphy.com/media/13borq7Zo2kulO/giphy.gif",
+    "https://media.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif"
   ];
-  for(let i=0;i<6;i++){
+  for(let i=0;i<7;i++){ 
     const c=document.createElement("img");
     c.src=gifs[i%gifs.length];
     c.className="catgif";
-    c.style.left=(i*15+5)+"vw";
+    c.style.left=(i*13+4)+"vw";
     document.body.appendChild(c);
   }
 }
